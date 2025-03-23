@@ -1,0 +1,28 @@
+
+.login-container {
+    margin: auto;
+    background: #F3F9FF;
+    border-radius: 12px;
+    padding: 40px;
+   
+}
+
+.btn-signin {
+    border-radius: 25px;
+    padding: 12px 30px;
+    font-weight: bold;
+}
+.forgot-password {
+    color: #ff9800;
+    text-decoration: none;
+}
+.signup-link {
+    color: #007bff;
+    text-decoration: none;
+}
+.signup-link:hover, .forgot-password:hover {
+    text-decoration: underline;
+}
+.illustration img {
+    max-width: 100%;
+}

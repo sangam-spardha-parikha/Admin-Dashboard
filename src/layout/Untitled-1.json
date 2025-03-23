@@ -1,0 +1,160 @@
+{
+    "orders": [
+   
+        {
+            "shipping": {
+                "name": "Daivesh",
+                "email": "meshcodings@gmail.com",
+                "phone": "08856998631",
+                "address": "Chanakya Nagar, Khutawad nagar",
+                "city": "Nashik",
+                "state": "Maharashtra",
+                "postalCode": "422007"
+            },
+            "_id": "6730f8ce26c40dcb6bf20541",
+            "user": null,
+            "cartItems": [
+                {
+                    "product": null,
+                    "quantity": 5,
+                    "_id": "672fa496ce80dbcaa700603c"
+                }
+            ],
+            "totalAmount": 3194,
+            "paymentMethod": "Pay Online - Razorpay",
+            "paymentStatus": "Paid",
+            "status": "Pending",
+            "createdAt": "2024-11-10T18:17:51.401Z",
+            "__v": 0
+        },
+        {
+            "shipping": {
+                "name": "Daivesh",
+                "email": "meshcodings@gmail.com",
+                "phone": "08856998631",
+                "address": "Chanakya Nagar, Khutawad nagar",
+                "city": "Nashik",
+                "state": "Maharashtra",
+                "postalCode": "422007"
+            },
+            "_id": "6730ca56aad1d3159c95f330",
+            "user": null,
+            "cartItems": [
+                {
+                    "product": null,
+                    "quantity": 5,
+                    "_id": "672fa496ce80dbcaa700603c"
+                }
+            ],
+            "totalAmount": 2995,
+            "paymentMethod": "Pay Online - Razorpay",
+            "paymentStatus": "Paid",
+            "status": "Pending",
+            "createdAt": "2024-11-10T14:59:34.760Z",
+            "__v": 0
+        },
+        {
+            "shipping": {
+                "name": "Daivesh",
+                "email": "meshcodings@gmail.com",
+                "phone": "08856998631",
+                "address": "Chanakya Nagar, Khutawad nagar",
+                "city": "Nashik",
+                "state": "Maharashtra",
+                "postalCode": "422007"
+            },
+            "_id": "6730c9a4aad1d3159c95f322",
+            "user": null,
+            "cartItems": [
+                {
+                    "product": null,
+                    "quantity": 5,
+                    "_id": "672fa496ce80dbcaa700603c"
+                }
+            ],
+            "totalAmount": 2995,
+            "paymentMethod": "Pay Online - Razorpay",
+            "paymentStatus": "Paid",
+            "status": "Pending",
+            "createdAt": "2024-11-10T14:56:36.334Z",
+            "__v": 0
+        },
+        {
+            "shipping": {
+                "name": "author",
+                "email": "meshcodings@gmail.com",
+                "phone": "08856998631",
+                "address": "Chanakya Nagar, Khutawad nagar",
+                "city": "Nashik",
+                "state": "Maharashtra",
+                "postalCode": "422007"
+            },
+            "_id": "6730c873aad1d3159c95f310",
+            "user": null,
+            "cartItems": [
+                {
+                    "product": null,
+                    "quantity": 5,
+                    "_id": "672fa496ce80dbcaa700603c"
+                }
+            ],
+            "totalAmount": 2995,
+            "paymentMethod": "Pay Online - Razorpay",
+            "paymentStatus": "Paid",
+            "status": "Pending",
+            "createdAt": "2024-11-10T14:51:31.980Z",
+            "__v": 0
+        },
+        {
+            "shipping": {
+                "name": "John Doe",
+                "email": "johndoe@example.com",
+                "phone": "1234567890",
+                "address": "123 Street",
+                "city": "City Name",
+                "state": "State Name",
+                "postalCode": "12345"
+            },
+            "_id": "6730bfd6aad1d3159c95f2eb",
+            "user": null,
+            "cartItems": [
+                {
+                    "product": null,
+                    "quantity": 5,
+                    "_id": "6730bfd6aad1d3159c95f2ec"
+                }
+            ],
+            "totalAmount": 5000,
+            "paymentMethod": "Cash on Delivery",
+            "paymentStatus": "Pending",
+            "status": "Pending",
+            "createdAt": "2024-11-10T14:14:46.231Z",
+            "__v": 0
+        },
+        {
+            "shipping": {
+                "name": "John Doe",
+                "email": "johndoe@example.com",
+                "phone": "1234567890",
+                "address": "123 Street",
+                "city": "City Name",
+                "state": "State Name",
+                "postalCode": "12345"
+            },
+            "paymentStatus": "Pending",
+            "_id": "6730bbf4036c7d55077b5674",
+            "user": null,
+            "cartItems": [
+                {
+                    "product": null,
+                    "quantity": 5,
+                    "_id": "6730bbf4036c7d55077b5675"
+                }
+            ],
+            "totalAmount": 5000,
+            "status": "Pending",
+            "createdAt": "2024-11-10T13:58:12.594Z",
+            "__v": 0
+        }
+    ]
+}
