@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, useEffect } from "react";
-import { login, logout, fetchProfile } from "../api/auth";
+import { login, logout, fetchProfile, signup } from "../api/auth";
 import { useNavigate } from "react-router-dom";
 
 const AuthContext = createContext();
@@ -8,6 +8,11 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
+  // 
+  const handleSignup = async (userData) => {
+    const data = await signup(userData);
+    return data;
+  };
 
   // Fetch user profile on mount
   useEffect(() => {
@@ -42,7 +47,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ user, handleLogin, handleLogout, loading }}>
+    <AuthContext.Provider value={{ user,handleSignup, handleLogin, handleLogout, loading }}>
       {children}
     </AuthContext.Provider>
   );

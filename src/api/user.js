@@ -3,7 +3,7 @@ import api from "./api";
 
 export const fetchUsers = async () => {
   try {
-    const response = await api.get("/api/auth/users", { withCredentials: true });
+    const response = await api.get("/auth/users", { withCredentials: true });
     return response.data;
   } catch (error) {
     throw error.response.data;

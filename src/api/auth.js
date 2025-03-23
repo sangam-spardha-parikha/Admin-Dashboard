@@ -1,5 +1,12 @@
 import api from "./api";
 
+// staff creation 
+export const signup = async (userData) => {
+  const res = await api.post(`/auth/signup`, userData);
+  return res.data;
+};
+
+
 // Login API
 export const login = async (userData) => {
   const res = await api.post("/auth/login", userData , { withCredentials: true });

@@ -8,6 +8,8 @@ import Header from './layout/Header'
 import Home from './pages/dashboard/Home';
 import Profile from './pages/user/Profile';
 import StudentUsers from './pages/student/ViewStudent';
+import UsersAll from './pages/student/ViewAll';
+import AddStaff from './pages/staff/AddStaff';
 function App() {
   return (
     <AuthProvider>
@@ -19,7 +21,8 @@ function App() {
           <Route path='/profile/me' element={<Profile />} />
           <Route path='/home' element={<Home />} />
           <Route path='/student' element={<StudentUsers/>} />
-          <Route path='/staff' element={<StudentUsers/>} />
+          <Route path='/staff' element={<UsersAll/>} />
+          <Route path='/add-staff' element={<AddStaff/>} />
         </Routes>
       </BrowserRouter>
     </AuthProvider>
