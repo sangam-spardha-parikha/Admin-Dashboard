@@ -37,7 +37,8 @@ const LoginForm = () => {
      
       await handleLogin(formData,device);
       showAlertSuccess("Login Successfully!", "success");
-      window.location.href = '/home'
+      navigate("/home")
+      // window.location.href = '/home'
     } catch (error) {
       alert("Invalid credentials");
     }

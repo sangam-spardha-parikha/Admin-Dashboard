@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
 import { ProfileDropdown } from './ProfileDropdown';
-
+import logo from './../assets/logo.jpg'
 const Header = () => {
 
 
   // Define the predefined fallback logo URL
-  const fallbackLogo = "https://arrivalsolutions.in/img/logo.jpg";
+  const fallbackLogo = logo;
 
   return (
     <div className="flex bg-gray-100 h-16 shadow-sm">

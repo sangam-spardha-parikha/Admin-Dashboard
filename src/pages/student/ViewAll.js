@@ -63,7 +63,7 @@ const UsersAll = () => {
             </div>
 
             {/* Main Content */}
-            <div className="w-3/4 p-4 bg-gray-100">
+        <div className="w-full sm:w-3/4 p-4 bg-gray-100 max-w-full">
                 <div className="text-end">
                     <Link to="/add-staff" className="btn btn-primary btn-signin mb-4">Add Staff</Link>
                 </div>
