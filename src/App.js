@@ -10,6 +10,7 @@ import Profile from './pages/user/Profile';
 import StudentUsers from './pages/student/ViewStudent';
 import UsersAll from './pages/student/ViewAll';
 import AddStaff from './pages/staff/AddStaff';
+import EditStaff from './pages/staff/EditStaff';
 function App() {
   return (
     <AuthProvider>
@@ -23,6 +24,7 @@ function App() {
           <Route path='/student' element={<StudentUsers/>} />
           <Route path='/staff' element={<UsersAll/>} />
           <Route path='/add-staff' element={<AddStaff/>} />
+          <Route path="/edit-staff/:id" element={<EditStaff/>} />
         </Routes>
       </BrowserRouter>
     </AuthProvider>

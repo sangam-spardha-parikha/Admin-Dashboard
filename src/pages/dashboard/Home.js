@@ -1,6 +1,8 @@
 import React from "react";
 import Sidebar from "../../layout/Sidebar";
-import StudentUsers from "../student/ViewStudent";
+
+import StatsGrid from "./Cards";
+import RevenueGraph from "./Graph";
 
 const Home = () => {
     return (
@@ -15,8 +17,11 @@ const Home = () => {
                 <h1 className="text-xl font-bold">Main Content Area</h1>
                 <p>Welcome to the main content area!</p>
 
-               
-
+                <StatsGrid />
+              
+              <div className="mt-5">
+              <RevenueGraph />
+              </div>
             </div>
 
 
