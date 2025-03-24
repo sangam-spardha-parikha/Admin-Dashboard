@@ -41,7 +41,7 @@ const StudentUsers = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {students.map(student => (
+                            {students && students.map((student) => (
                                 <tr key={student._id}>
                                     <td className="py-2 px-4 border">{student.name}</td>
                                     <td className="py-2 px-4 border">{student.email}</td>
