@@ -53,7 +53,11 @@ const EditStaff = () => {
     };
 
     return (
-        <div className="max-w-3xl mx-auto mt-10 p-6 bg-white shadow-md rounded-md">
+        <div className="flex min-h-[100vh] flex-col p-4 bg-gray-100">
+
+
+        {/* Main Content */}
+    
             <h2 className="text-2xl font-semibold mb-4">Edit Staff Member</h2>
 
             {loading ? (

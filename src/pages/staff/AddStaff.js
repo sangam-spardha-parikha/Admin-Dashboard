@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import { useValidation } from "./../../components/Validation";
 import { InputField } from "./../../components/InputField";
 import { Link, useNavigate } from "react-router-dom";
-import { useAuth  } from "./../../context/AuthContext";
+import { useAuth } from "./../../context/AuthContext";
 
 import { showAlertSuccess } from "../../components/Alert";
 import Sidebar from "../../layout/Sidebar";
@@ -11,11 +11,13 @@ const AddStaff = () => {
     const { handleSignup } = useAuth();
 
     const { errors, validateField } = useValidation();
-    const [formData, setFormData] = useState({name:"",
-         email: "",
-         phone : "", 
-         password: "" ,
-        role : "isStaff"});
+    const [formData, setFormData] = useState({
+        name: "",
+        email: "",
+        phone: "",
+        password: "",
+        role: "isStaff"
+    });
     const [showPassword, setShowPassword] = useState(false);
 
     const navigate = useNavigate();
@@ -41,7 +43,7 @@ const AddStaff = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const res= await  handleSignup(formData);
+            const res = await handleSignup(formData);
             showAlertSuccess("success", "Staff Added Successfully.", "success");
             navigate('/staff')
         } catch (error) {
@@ -50,14 +52,11 @@ const AddStaff = () => {
     };
 
     return (
-        <div className="flex h-screen">
-            {/* Sidebar */}
-            <div className="w-1/4 bg-gray-800 text-white">
-                <Sidebar />
-            </div>
+        <div className="flex min-h-[100vh] flex-col p-4 bg-gray-100">
+
 
             {/* Main Content */}
-        <div className="w-full sm:w-3/4 p-4 bg-gray-100 max-w-full">
+            <div className="">
                 <div className="p-6 bg-white shadow-lg rounded-md">
                     <h2 className="text-xl font-semibold mb-4">Add Staff</h2>
                     <form onSubmit={handleSubmit}>
