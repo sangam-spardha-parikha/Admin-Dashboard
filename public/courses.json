@@ -1,0 +1,39 @@
+[
+    {
+      "id": 1,
+      "title": "React.js for Beginners",
+      "category": "Web Development",
+      "description": "Learn the basics of React.js and build dynamic web applications.",
+      "price": 49.99,
+      "coverImage": "https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cmVhY3QlMjBqc3xlbnwwfHwwfHx8MA%3D%3D",
+      "videoCourses": [
+        {
+          "title": "Introduction to React",
+          "url": "https://www.example.com/video1"
+        },
+        {
+          "title": "React Components & Props",
+          "url": "https://www.example.com/video2"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Node.js API Development",
+      "category": "Backend",
+      "description": "Build RESTful APIs using Node.js and Express.",
+      "price": 59.99,
+      "coverImage": "https://img.freepik.com/free-vector/javascript-abstract-concept-illustration_335657-3702.jpg?semt=ais_hybrid",
+      "videoCourses": [
+        {
+          "title": "Setting up Node.js",
+          "url": "https://www.example.com/video3"
+        },
+        {
+          "title": "Building APIs with Express",
+          "url": "https://www.example.com/video4"
+        }
+      ]
+    }
+  ]
+  

@@ -20,7 +20,8 @@ import TestList from './pages/testseries/ViewTest';
 import AddTestSeries from './pages/testseries/CreateTest';
 import NoteListId from './pages/notes/ViewById';
 import TestListId from './pages/testseries/ViewById';
-
+import CourseTable from "./pages/course/CourseTable";
+import CourseDetails from "./pages/course/CourseDetails";
 function App() {
   return (
     <AuthProvider>
@@ -55,6 +56,8 @@ function App() {
                 <Route path='/test-series' element={<TestList />} />
                 <Route path='/add-test-series' element={<AddTestSeries />} />
                 <Route path='/view-test-series/:id' element={<TestListId />} />
+                <Route path="/course" element={<CourseTable />} />
+                <Route path="/courses/:id" element={<CourseDetails />} />
               </Routes>
             </main>
           </div>
