@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { fetchUsers, deleteUser } from "../../api/user";
 import { useNavigate } from "react-router-dom";
 import Sidebar from "../../layout/Sidebar";
 import { Link } from "react-router-dom";
+import { fetchTestSeries, deleteTestSeries } from "../../api/testSeriesApi";
 
-const UsersAll = () => {
-    const [users, setUsers] = useState([]);
+const TestList = () => {
+    const [test, setTest] = useState([]);
     const [error, setError] = useState("");
     const [currentPage, setCurrentPage] = useState(1);
     const [itemsPerPage, setItemsPerPage] = useState(10);
@@ -13,26 +13,26 @@ const UsersAll = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        const loadUsers = async () => {
+        const loadTestSeries = async () => {
             try {
-                const data = await fetchUsers();
-                setUsers(data);
+                const data = await fetchTestSeries();
+                setTest(data);
             } catch (err) {
                 setError(err.message);
             }
         };
-        loadUsers();
+        loadTestSeries();
     }, []);
 
-    // Filter users based on search input
-    const filteredUsers = users.filter(user =>
-        user.name.toLowerCase().includes(searchQuery.toLowerCase())
+    // Filter test series based on search input
+    const filteredTests = test.filter(item =>
+        item.title.toLowerCase().includes(searchQuery.toLowerCase())
     );
 
     // Pagination Logic
-    const indexOfLastUser = currentPage * itemsPerPage;
-    const indexOfFirstUser = indexOfLastUser - itemsPerPage;
-    const currentUsers = filteredUsers.slice(indexOfFirstUser, indexOfLastUser);
+    const indexOfLastTest = currentPage * itemsPerPage;
+    const indexOfFirstTest = indexOfLastTest - itemsPerPage;
+    const currentTests = filteredTests.slice(indexOfFirstTest, indexOfLastTest);
 
     // Change Page
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
@@ -43,14 +43,14 @@ const UsersAll = () => {
         setCurrentPage(1);
     };
 
-    // Handle delete user
+    // Handle delete test series
     const handleDelete = async (id) => {
-        if (window.confirm("Are you sure you want to delete this user?")) {
+        if (window.confirm("Are you sure you want to delete this test series?")) {
             try {
-                await deleteUser(id);
-                setUsers(users.filter(user => user._id !== id)); // Update UI
+                await deleteTestSeries(id);
+                setTest(test.filter(item => item._id !== id)); // Update UI
             } catch (error) {
-                setError("Error deleting user.");
+                setError("Error deleting test series.");
             }
         }
     };
@@ -63,13 +63,15 @@ const UsersAll = () => {
             </div>
 
             {/* Main Content */}
-        <div className="w-full sm:w-3/4 p-4 bg-gray-100 max-w-full">
+            <div className="w-full sm:w-3/4 p-4 bg-gray-100 max-w-full">
                 <div className="text-end">
-                    <Link to="/add-staff" className="btn btn-primary btn-signin mb-4">Add Staff</Link>
+                    <Link to="/add-test-series" className="btn btn-primary btn-signin mb-4">
+                        Add Test Series
+                    </Link>
                 </div>
 
                 <div className="p-6 bg-white shadow-lg rounded-md">
-                    <h2 className="text-xl font-semibold mb-4">All Registered Staff</h2>
+                    <h2 className="text-xl font-semibold mb-4">All Test Series</h2>
                     {error && <p className="text-red-500">{error}</p>}
 
                     {/* Search Input */}
@@ -77,7 +79,7 @@ const UsersAll = () => {
                         <input
                             type="text"
                             className="border p-2 w-full"
-                            placeholder="Search by name"
+                            placeholder="Search by title"
                             value={searchQuery}
                             onChange={(e) => setSearchQuery(e.target.value)}
                         />
@@ -87,31 +89,38 @@ const UsersAll = () => {
                     <table className="min-w-full bg-white border">
                         <thead>
                             <tr>
-                                <th className="py-2 px-4 border">Name</th>
-                                <th className="py-2 px-4 border">Email</th>
-                                <th className="py-2 px-4 border">Phone</th>
+                                <th className="py-2 px-4 border">Title</th>
+                                <th className="py-2 px-4 border">Category</th>
+                                <th className="py-2 px-4 border">Price</th>
                                 <th className="py-2 px-4 border">Created</th>
                                 <th className="py-2 px-4 border">Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {currentUsers.map(user => (
-                                <tr key={user._id}>
-                                    <td className="py-2 px-4 border">{user.name}</td>
-                                    <td className="py-2 px-4 border">{user.email}</td>
-                                    <td className="py-2 px-4 border">{user.phone}</td>
-                                    <td className="py-2 px-4 border">{user.createdAt}</td>
+                            {currentTests.map(item => (
+                                <tr key={item._id}>
+                                    <td className="py-2 px-4 border">{item.title}</td>
+                                    <td className="py-2 px-4 border">{item.category}</td>
+                                    <td className="py-2 px-4 border">₹{item.price}</td>
+                                    <td className="py-2 px-4 border">{new Date(item.createdAt).toLocaleDateString()}</td>
                                     <td className="py-2 px-4 border">
+
+                                        {/* View Data Button */}
+                                        <i
+                                            className="bi bi-eye-fill cursor-pointer text-blue-500"
+                                            onClick={() => navigate(`/view-test-series/${item._id}`)}
+                                        ></i>
+
                                         {/* Edit Button */}
-                                        <i 
-                                            className="bi bi-pencil-fill cursor-pointer text-blue-500"
-                                            onClick={() => navigate(`/edit-staff/${user._id}`)}
+                                        <i
+                                            className="bi bi-pencil-fill cursor-pointer text-blue-500 mx-3"
+                                            onClick={() => navigate(`/edit-test-series/${item._id}`)}
                                         ></i>
 
                                         {/* Delete Button */}
-                                        <i 
-                                            className="bi bi-trash-fill text-red-500 cursor-pointer ml-3"
-                                            onClick={() => handleDelete(user._id)}
+                                        <i
+                                            className="bi bi-trash-fill text-red-500 cursor-pointer "
+                                            onClick={() => handleDelete(item._id)}
                                         ></i>
                                     </td>
                                 </tr>
@@ -136,7 +145,7 @@ const UsersAll = () => {
 
                         {/* Pagination Buttons */}
                         <div>
-                            {Array.from({ length: Math.ceil(filteredUsers.length / itemsPerPage) }, (_, index) => (
+                            {Array.from({ length: Math.ceil(filteredTests.length / itemsPerPage) }, (_, index) => (
                                 <button
                                     key={index + 1}
                                     onClick={() => paginate(index + 1)}
@@ -153,4 +162,4 @@ const UsersAll = () => {
     );
 };
 
-export default UsersAll;
+export default TestList;

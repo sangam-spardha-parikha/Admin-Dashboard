@@ -1,41 +1,59 @@
 import React, { useEffect, useState } from "react";
-import { fetchStudents } from "../../api/user";
+import { fetchUsers, deleteUser } from "../../api/admin";
+import { useNavigate } from "react-router-dom";
 import Sidebar from "../../layout/Sidebar";
+import { Link } from "react-router-dom";
 
-const StudentUsers = () => {
-    const [students, setStudents] = useState([]);
+const ViewAdmin = () => {
+    const [users, setUsers] = useState([]);
     const [error, setError] = useState("");
     const [currentPage, setCurrentPage] = useState(1);
     const [itemsPerPage, setItemsPerPage] = useState(10);
     const [searchQuery, setSearchQuery] = useState("");
+    const navigate = useNavigate();
 
     useEffect(() => {
-        const loadStudents = async () => {
+        const loadUsers = async () => {
             try {
-                const data = await fetchStudents();
-                setStudents(data);
+                const data = await fetchUsers();
+                setUsers(data);
             } catch (err) {
                 setError(err.message);
             }
         };
-        loadStudents();
+        loadUsers();
     }, []);
 
-    // Filter students by name based on the search query
-    const filteredStudents = students.filter(student =>
-        student.name.toLowerCase().includes(searchQuery.toLowerCase())
+    // Filter users based on search input
+    const filteredUsers = users.filter(user =>
+        user.name.toLowerCase().includes(searchQuery.toLowerCase())
     );
 
-    // Get the current page students
-    const indexOfLastStudent = currentPage * itemsPerPage;
-    const indexOfFirstStudent = indexOfLastStudent - itemsPerPage;
-    const currentStudents = filteredStudents.slice(indexOfFirstStudent, indexOfLastStudent);
+    // Pagination Logic
+    const indexOfLastUser = currentPage * itemsPerPage;
+    const indexOfFirstUser = indexOfLastUser - itemsPerPage;
+    const currentUsers = filteredUsers.slice(indexOfFirstUser, indexOfLastUser);
 
-    // Change page handler
+    // Change Page
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
-    // Change items per page handler
-    const handleItemsPerPageChange = (e) => setItemsPerPage(Number(e.target.value));
+    // Change items per page
+    const handleItemsPerPageChange = (e) => {
+        setItemsPerPage(Number(e.target.value));
+        setCurrentPage(1);
+    };
+
+    // Handle delete user
+    const handleDelete = async (id) => {
+        if (window.confirm("Are you sure you want to delete this user?")) {
+            try {
+                await deleteUser(id);
+                setUsers(users.filter(user => user._id !== id)); // Update UI
+            } catch (error) {
+                setError("Error deleting user.");
+            }
+        }
+    };
 
     return (
         <div className="flex h-screen">
@@ -46,11 +64,15 @@ const StudentUsers = () => {
 
             {/* Main Content */}
         <div className="w-full sm:w-3/4 p-4 bg-gray-100 max-w-full">
+                <div className="text-end">
+                    <Link to="/add-admin" className="btn btn-primary btn-signin mb-4">Add Admin</Link>
+                </div>
+
                 <div className="p-6 bg-white shadow-lg rounded-md">
-                    <h2 className="text-xl font-semibold mb-4">All Students</h2>
+                    <h2 className="text-xl font-semibold mb-4">All Registered Admin</h2>
                     {error && <p className="text-red-500">{error}</p>}
 
-                    {/* Search input */}
+                    {/* Search Input */}
                     <div className="mb-4">
                         <input
                             type="text"
@@ -68,20 +90,35 @@ const StudentUsers = () => {
                                 <th className="py-2 px-4 border">Name</th>
                                 <th className="py-2 px-4 border">Email</th>
                                 <th className="py-2 px-4 border">Phone</th>
-                                <th className="py-2 px-4 border">Education</th>
+                                <th className="py-2 px-4 border">Created</th>
+                                <th className="py-2 px-4 border">Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {currentStudents.map((student) => (
-                                <tr key={student._id}>
-                                    <td className="py-2 px-4 border">{student.name}</td>
-                                    <td className="py-2 px-4 border">{student.email}</td>
-                                    <td className="py-2 px-4 border">{student.phone}</td>
-                                    <td className="py-2 px-4 border">{student.education}</td>
+                            {currentUsers.map(user => (
+                                <tr key={user._id}>
+                                    <td className="py-2 px-4 border">{user.name}</td>
+                                    <td className="py-2 px-4 border">{user.email}</td>
+                                    <td className="py-2 px-4 border">{user.phone}</td>
+                                    <td className="py-2 px-4 border">{user.createdAt}</td>
+                                    <td className="py-2 px-4 border">
+                                        {/* Edit Button */}
+                                        <i 
+                                            className="bi bi-pencil-fill cursor-pointer text-blue-500"
+                                            onClick={() => navigate(`/edit-staff/${user._id}`)}
+                                        ></i>
+
+                                        {/* Delete Button */}
+                                        <i 
+                                            className="bi bi-trash-fill text-red-500 cursor-pointer ml-3"
+                                            onClick={() => handleDelete(user._id)}
+                                        ></i>
+                                    </td>
                                 </tr>
                             ))}
                         </tbody>
                     </table>
+
                     {/* Pagination Controls */}
                     <div className="mt-4 flex justify-between items-center">
                         {/* Items per Page Selection */}
@@ -99,7 +136,7 @@ const StudentUsers = () => {
 
                         {/* Pagination Buttons */}
                         <div>
-                            {Array.from({ length: Math.ceil(filteredStudents.length / itemsPerPage) }, (_, index) => (
+                            {Array.from({ length: Math.ceil(filteredUsers.length / itemsPerPage) }, (_, index) => (
                                 <button
                                     key={index + 1}
                                     onClick={() => paginate(index + 1)}
@@ -116,4 +153,4 @@ const StudentUsers = () => {
     );
 };
 
-export default StudentUsers;
+export default ViewAdmin;

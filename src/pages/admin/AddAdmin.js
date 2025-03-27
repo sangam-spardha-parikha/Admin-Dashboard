@@ -2,20 +2,22 @@ import { useContext, useState } from "react";
 import { useValidation } from "./../../components/Validation";
 import { InputField } from "./../../components/InputField";
 import { Link, useNavigate } from "react-router-dom";
-import { useAuth  } from "./../../context/AuthContext";
+import { useAuth } from "./../../context/AuthContext";
 
 import { showAlertSuccess } from "../../components/Alert";
 import Sidebar from "../../layout/Sidebar";
 
-const AddStaff = () => {
+const AddAdmin = () => {
     const { handleSignup } = useAuth();
 
     const { errors, validateField } = useValidation();
-    const [formData, setFormData] = useState({name:"",
-         email: "",
-         phone : "", 
-         password: "" ,
-        role : "isStaff"});
+    const [formData, setFormData] = useState({
+        name: "",
+        email: "",
+        phone: "",
+        password: "",
+        role: "isAdmin"
+    });
     const [showPassword, setShowPassword] = useState(false);
 
     const navigate = useNavigate();
@@ -41,9 +43,9 @@ const AddStaff = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const res= await  handleSignup(formData);
-            showAlertSuccess("success", "Staff Added Successfully.", "success");
-            navigate('/staff')
+            const res = await handleSignup(formData);
+            showAlertSuccess("success", "Admin Added Successfully.", "success");
+            navigate('/admin')
         } catch (error) {
             alert("Invalid credentials");
         }
@@ -57,9 +59,9 @@ const AddStaff = () => {
             </div>
 
             {/* Main Content */}
-        <div className="w-full sm:w-3/4 p-4 bg-gray-100 max-w-full">
+            <div className="w-full sm:w-3/4 p-4 bg-gray-100 max-w-full">
                 <div className="p-6 bg-white shadow-lg rounded-md">
-                    <h2 className="text-xl font-semibold mb-4">Add Staff</h2>
+                    <h2 className="text-xl font-semibold mb-4">Add Admin</h2>
                     <form onSubmit={handleSubmit}>
                         {fields.map((field) => (
                             <InputField
@@ -76,7 +78,7 @@ const AddStaff = () => {
 
 
 
-                        <button className="btn btn-primary w-100 btn-signin mt-4">Create Staff</button>
+                        <button className="btn btn-primary w-100 btn-signin mt-4">Create Admin</button>
                     </form>
                 </div>
             </div>
@@ -85,4 +87,4 @@ const AddStaff = () => {
     );
 };
 
-export default AddStaff;
+export default AddAdmin;
