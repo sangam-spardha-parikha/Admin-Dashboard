@@ -53,7 +53,9 @@ const EditAdmin = () => {
     };
 
     return (
-        <div className="max-w-3xl mx-auto mt-10 p-6 bg-white shadow-md rounded-md">
+        <div className="flex min-h-[100vh] flex-col p-4 bg-gray-100">
+
+
             <h2 className="text-2xl font-semibold mb-4">Edit Admin </h2>
 
             {loading ? (
@@ -74,7 +76,7 @@ const EditAdmin = () => {
                         />
                     </div>
 
-                   
+
 
                     <div className="mb-4">
                         <label className="block font-semibold">Phone</label>
@@ -88,7 +90,7 @@ const EditAdmin = () => {
                         />
                     </div>
 
-                  
+
 
                     <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded-md">
                         Update

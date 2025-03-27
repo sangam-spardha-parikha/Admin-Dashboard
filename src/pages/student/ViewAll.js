@@ -56,14 +56,11 @@ const UsersAll = () => {
     };
 
     return (
-        <div className="flex h-screen">
-            {/* Sidebar */}
-            <div className="w-1/4 bg-gray-800 text-white">
-                <Sidebar />
-            </div>
+        <div className="flex min-h-[100vh] flex-col p-4 bg-gray-100">
+
 
             {/* Main Content */}
-        <div className="w-full sm:w-3/4 p-4 bg-gray-100 max-w-full">
+        <div className="">
                 <div className="text-end">
                     <Link to="/add-staff" className="btn btn-primary btn-signin mb-4">Add Staff</Link>
                 </div>

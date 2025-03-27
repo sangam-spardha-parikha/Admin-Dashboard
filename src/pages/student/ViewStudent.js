@@ -38,14 +38,11 @@ const StudentUsers = () => {
     const handleItemsPerPageChange = (e) => setItemsPerPage(Number(e.target.value));
 
     return (
-        <div className="flex h-screen">
-            {/* Sidebar */}
-            <div className="w-1/4 bg-gray-800 text-white">
-                <Sidebar />
-            </div>
+        <div className="flex min-h-[100vh] flex-col p-4 bg-gray-100">
 
-            {/* Main Content */}
-        <div className="w-full sm:w-3/4 p-4 bg-gray-100 max-w-full">
+
+        {/* Main Content */}
+    <div className="">
                 <div className="p-6 bg-white shadow-lg rounded-md">
                     <h2 className="text-xl font-semibold mb-4">All Students</h2>
                     {error && <p className="text-red-500">{error}</p>}
