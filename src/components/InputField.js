@@ -8,7 +8,7 @@ export const InputField = ({ label, type, name, value, onChange, errors = {}, op
             name={name}
             value={value}
             onChange={onChange}
-            className="form-control mb-3 w-100"
+            className="form-control mb-3 w-full"
             style={{ borderRadius: "25px", padding: "12px" }}
             required={required}
           >
@@ -89,7 +89,7 @@ export const InputField = ({ label, type, name, value, onChange, errors = {}, op
             name={name}
             value={value}
             onChange={onChange}
-            className="form-control mb-3 w-100"
+            className="form-control mb-3 w-full"
             style={{ borderRadius: "25px", padding: "12px" }}
             required={required}
           />

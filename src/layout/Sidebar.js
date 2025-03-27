@@ -38,6 +38,7 @@ const Sidebar = () => {
                 { label: "Test Series", link: "/test-series" },
                 { label: "Student", link: "/student" },
                 { label: "Staff", link: "/staff" },
+                { label: "Admin", link: "/admin" },
                 { label: "Payout", link: "/payout" },
               ].map((item) => (
                 <Link
