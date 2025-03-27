@@ -69,10 +69,11 @@ const AddTestSeries = () => {
     };
 
     return (
-        <div className="flex h-screen">
+        <div className="flex min-h-[100vh] flex-col p-4 bg-gray-100">
+
             
 
-            <div className="w-full sm:w-3/4 p-4 bg-gray-100">
+            <div className="">
                 <div className="p-6 bg-white shadow-lg rounded-md">
                     <h2 className="text-xl font-semibold mb-4">Add Test Series</h2>
                     <form onSubmit={handleSubmit} className="w-full">
