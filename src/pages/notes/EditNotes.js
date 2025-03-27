@@ -49,11 +49,9 @@ const EditNote = () => {
     };
 
     return (
-        <div className="flex h-screen">
-            <div className="w-1/4 bg-gray-800 text-white">
-                <Sidebar />
-            </div>
-            <div className="w-3/4 p-6 bg-gray-100">
+        <div className="flex min-h-[100vh] flex-col p-4 bg-gray-100">
+            
+            <div className="">
                 <h2 className="text-xl font-semibold mb-4">Edit Note</h2>
                 <form onSubmit={handleSubmit}>
                     <input type="text" name="title" value={formData.title} onChange={handleChange} placeholder="Title" />

@@ -1,10 +1,10 @@
 import { useState } from "react";
-import { useValidation } from "./../../components/Validation";
-import { InputField } from "./../../components/InputField";
+import { useValidation } from "../../components/Validation";
+import { InputField } from "../../components/InputField";
 import { useNavigate } from "react-router-dom";
 import { showAlertSuccess } from "../../components/Alert";
 import Sidebar from "../../layout/Sidebar";
-import { createTestSeries } from "./../../api/testSeriesApi";
+import { createTestSeries } from "../../api/testSeriesApi";
 
 const AddTestSeries = () => {
     const { errors, validateField } = useValidation();
@@ -16,12 +16,13 @@ const AddTestSeries = () => {
         pdfNote: null
     });
 
+    const [isSubmitting, setIsSubmitting] = useState(false);
     const navigate = useNavigate();
 
     const fields = [
-        { label: "Title", type: "text", name: "title", value: formData.title, required: true },
-        { label: "Category", type: "text", name: "category", value: formData.category, required: true },
-        { label: "Price", type: "number", name: "price", value: formData.price, required: true }
+        { label: "Title", type: "text", name: "title", required: true },
+        { label: "Category", type: "text", name: "category", required: true },
+        { label: "Price", type: "number", name: "price", required: true }
     ];
 
     const handleChange = (e) => {
@@ -39,13 +40,13 @@ const AddTestSeries = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
-        // Check for missing required fields
+        
         if (!formData.title || !formData.category || !formData.price) {
             alert("Please fill in all required fields.");
             return;
         }
 
+        setIsSubmitting(true);
         const testSeriesData = new FormData();
         testSeriesData.append("title", formData.title);
         testSeriesData.append("category", formData.category);
@@ -53,7 +54,7 @@ const AddTestSeries = () => {
         if (formData.coverImage) testSeriesData.append("coverImage", formData.coverImage);
         if (formData.pdfNote) testSeriesData.append("pdfNote", formData.pdfNote);
 
-        console.log("Submitting Data:", Object.fromEntries(testSeriesData)); // Debugging
+        console.log("Submitting Data:", Object.fromEntries(testSeriesData.entries())); // Debugging
 
         try {
             await createTestSeries(testSeriesData);
@@ -62,21 +63,19 @@ const AddTestSeries = () => {
         } catch (error) {
             console.error("Error adding test series:", error);
             alert("Error adding test series. Please check your input.");
+        } finally {
+            setIsSubmitting(false);
         }
     };
 
     return (
         <div className="flex h-screen">
-            {/* Sidebar */}
-            <div className="w-1/4 bg-gray-800 text-white">
-                <Sidebar />
-            </div>
+            
 
-            {/* Main Content */}
-            <div className="w-full sm:w-3/4 p-4 bg-gray-100 max-w-full">
-                <div className="p-6 bg-white shadow-lg rounded-md max-w-full">
-                    <h2 className="text-xl font-semibold mb-4 w-full">Add Test Series</h2>
-                    <form onSubmit={handleSubmit} className="max-w-full" style={{width :"100%"}}>
+            <div className="w-full sm:w-3/4 p-4 bg-gray-100">
+                <div className="p-6 bg-white shadow-lg rounded-md">
+                    <h2 className="text-xl font-semibold mb-4">Add Test Series</h2>
+                    <form onSubmit={handleSubmit} className="w-full">
                         {fields.map((field) => (
                             <InputField
                                 key={field.name}
@@ -96,7 +95,9 @@ const AddTestSeries = () => {
                         <label className="block mt-4">PDF Note</label>
                         <input type="file" name="pdfNote" accept="application/pdf" onChange={handleFileChange} className="border p-2 w-full" />
 
-                        <button type="submit" className="btn btn-primary w-full mt-4">Create Test Series</button>
+                        <button type="submit" className="btn btn-primary w-full mt-4" disabled={isSubmitting}>
+                            {isSubmitting ? "Creating..." : "Create Test Series"}
+                        </button>
                     </form>
                 </div>
             </div>

@@ -26,14 +26,9 @@ const NoteListId = () => {
     }, [id]); // Dependency array includes `id`
 
     return (
-        <div className="flex h-screen">
-            {/* Sidebar */}
-            <div className="w-1/4 bg-gray-800 text-white">
-                <Sidebar />
-            </div>
-
-            {/* Main Content */}
-            <div className="w-full sm:w-3/4 p-4 bg-gray-100 max-w-full">
+        <div className="flex min-h-[100vh] flex-col p-4 bg-gray-100">
+            
+            <div className="">
                 <h2 className="text-xl font-semibold mb-4">Note Details</h2>
                 {error ? (
                     <p className="text-red-500">{error}</p>

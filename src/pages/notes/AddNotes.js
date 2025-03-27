@@ -15,7 +15,7 @@ const AddNotes = () => {
         coverImage: null,
         pdfNote: null
     });
-    
+
     const navigate = useNavigate();
 
     const fields = [
@@ -52,14 +52,11 @@ const AddNotes = () => {
     };
 
     return (
-        <div className="flex h-screen">
-            {/* Sidebar */}
-            <div className="w-1/4 bg-gray-800 text-white">
-                <Sidebar />
-            </div>
+        <div className="flex min-h-[100vh] flex-col p-4 bg-gray-100">
+
 
             {/* Main Content */}
-            <div className="w-full sm:w-3/4 p-4 bg-gray-100 max-w-full">
+            <div className="">
                 <div className="p-6 bg-white shadow-lg rounded-md">
                     <h2 className="text-xl font-semibold mb-4">Add Note</h2>
                     <form onSubmit={handleSubmit}>
