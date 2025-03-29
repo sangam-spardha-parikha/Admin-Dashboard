@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import { useValidation } from "./../../components/Validation";
 import { InputField } from "./../../components/InputField";
 import { Link, useNavigate } from "react-router-dom";
-import { useAuth  } from "./../../context/AuthContext";
+import { useAuth } from "./../../context/AuthContext";
 import { showAlertSuccess } from "../../components/Alert";
 import './Auth.css';
 
@@ -16,7 +16,7 @@ const LoginForm = () => {
 
   const [device, setDevice] = useState(""); // Track device name for login
 
-  
+
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
@@ -34,12 +34,14 @@ const LoginForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-     
-      await handleLogin(formData,device);
+      await handleLogin(formData, device);
       showAlertSuccess("Login Successfully!", "success");
-    window.location.href = '/home'
+     
+        window.location.href = "/home"; // Navigate to dashboard after successful login
+     
     } catch (error) {
       alert("Invalid credentials");
+
     }
   };
 
@@ -48,7 +50,7 @@ const LoginForm = () => {
       <div className="row login-container w-100">
         <div className="col-md-6 text-start">
           <h2 className="fw-bold mb-5 pb-5">Welcome Back!</h2>
-         
+
 
           <form onSubmit={handleSubmit}>
             {fields.map((field) => (

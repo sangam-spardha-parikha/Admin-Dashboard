@@ -8,13 +8,13 @@ const Sidebar = () => {
     <div className="flex">
       {/* Mobile Menu Button (Now Below Header) */}
       <div className="fixed top-16 left-0 w-full md:hidden flex justify-start p-2 bg-gray-800 mb-12">
-  <button
-    className="p-2 text-white bg-green-700 rounded-md"
-    onClick={() => setIsOpen(!isOpen)}
-  >
-    ☰ Menu
-  </button>
-</div>
+        <button
+          className="p-2 text-white bg-green-700 rounded-md"
+          onClick={() => setIsOpen(!isOpen)}
+        >
+          ☰ Menu
+        </button>
+      </div>
 
       {/* Sidebar (Sticky on Desktop, Toggles on Mobile) */}
       <div
@@ -39,7 +39,7 @@ const Sidebar = () => {
             { label: "Student", link: "/student" },
             { label: "Staff", link: "/staff" },
             { label: "Admin", link: "/admin" },
-            { label: "Payout", link: "/payout" },
+            { label: "Payments", link: "/payments" },
           ].map((item) => (
             <Link
               key={item.label}

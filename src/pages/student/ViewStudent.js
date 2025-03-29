@@ -1,116 +1,51 @@
 import React, { useEffect, useState } from "react";
-import { fetchStudents } from "../../api/user";
-import Sidebar from "../../layout/Sidebar";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
+import Table from "./../../components/Table"; // Adjust the import path as necessary
+import { fetchStudents } from "../../api/user"; // API functions
+import { FaEye, FaEdit, FaTrash } from "react-icons/fa"; // Import icons
 
-const StudentUsers = () => {
-    const [students, setStudents] = useState([]);
-    const [error, setError] = useState("");
-    const [currentPage, setCurrentPage] = useState(1);
-    const [itemsPerPage, setItemsPerPage] = useState(10);
-    const [searchQuery, setSearchQuery] = useState("");
+const UsersAll = () => {
+    const [users, setUsers] = useState([]);
+    const navigate = useNavigate(); // Initialize navigate function
 
+    // Fetch data from API
     useEffect(() => {
-        const loadStudents = async () => {
+        const loadUsers = async () => {
             try {
                 const data = await fetchStudents();
-                setStudents(data);
+                setUsers(data);
             } catch (err) {
-                setError(err.message);
+                console.warn(err.message);
             }
         };
-        loadStudents();
+        loadUsers();
     }, []);
 
-    // Filter students by name based on the search query
-    const filteredStudents = students.filter(student =>
-        student.name.toLowerCase().includes(searchQuery.toLowerCase())
-    );
+    // Delete Note
 
-    // Get the current page students
-    const indexOfLastStudent = currentPage * itemsPerPage;
-    const indexOfFirstStudent = indexOfLastStudent - itemsPerPage;
-    const currentStudents = filteredStudents.slice(indexOfFirstStudent, indexOfLastStudent);
 
-    // Change page handler
-    const paginate = (pageNumber) => setCurrentPage(pageNumber);
+    const columns = [
+        { header: "Name", accessor: "name" },
+        { header: "Email", accessor: "email" },
+        { header: "Phone", accessor: "phone" }
+    ];
 
-    // Change items per page handler
-    const handleItemsPerPageChange = (e) => setItemsPerPage(Number(e.target.value));
-
+    const actions = [
+        {
+            label: "View",
+            icon: <FaEye />,
+            color: "#28a745",
+            onClick: (note) => alert("we work on"), // Navigate to View Page
+        },
+    ];
+  
     return (
         <div className="flex min-h-[100vh] flex-col p-4 bg-gray-100">
-
-
-        {/* Main Content */}
-    <div className="">
-                <div className="p-6 bg-white shadow-lg rounded-md">
-                    <h2 className="text-xl font-semibold mb-4">All Students</h2>
-                    {error && <p className="text-red-500">{error}</p>}
-
-                    {/* Search input */}
-                    <div className="mb-4">
-                        <input
-                            type="text"
-                            className="border p-2 w-full"
-                            placeholder="Search by name"
-                            value={searchQuery}
-                            onChange={(e) => setSearchQuery(e.target.value)}
-                        />
-                    </div>
-
-                    {/* Table */}
-                    <table className="min-w-full bg-white border">
-                        <thead>
-                            <tr>
-                                <th className="py-2 px-4 border">Name</th>
-                                <th className="py-2 px-4 border">Email</th>
-                                <th className="py-2 px-4 border">Phone</th>
-                                <th className="py-2 px-4 border">Education</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {currentStudents.map((student) => (
-                                <tr key={student._id}>
-                                    <td className="py-2 px-4 border">{student.name}</td>
-                                    <td className="py-2 px-4 border">{student.email}</td>
-                                    <td className="py-2 px-4 border">{student.phone}</td>
-                                    <td className="py-2 px-4 border">{student.education}</td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
-                    {/* Pagination Controls */}
-                    <div className="mt-4 flex justify-between items-center">
-                        {/* Items per Page Selection */}
-                        <select
-                            className="border p-2"
-                            value={itemsPerPage}
-                            onChange={handleItemsPerPageChange}
-                        >
-                            <option value={10}>10</option>
-                            <option value={20}>20</option>
-                            <option value={30}>30</option>
-                            <option value={40}>40</option>
-                            <option value={50}>50</option>
-                        </select>
-
-                        {/* Pagination Buttons */}
-                        <div>
-                            {Array.from({ length: Math.ceil(filteredStudents.length / itemsPerPage) }, (_, index) => (
-                                <button
-                                    key={index + 1}
-                                    onClick={() => paginate(index + 1)}
-                                    className={`py-1 px-3 mx-1 border ${currentPage === index + 1 ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}
-                                >
-                                    {index + 1}
-                                </button>
-                            ))}
-                        </div>
-                    </div>
-                </div>
-            </div>
+       
+            <h2 className="text-xl font-bold mb-4">Users List</h2>
+            <Table columns={columns} data={users} actions={actions} />
         </div>
     );
 };
 
-export default StudentUsers;
+export default UsersAll;

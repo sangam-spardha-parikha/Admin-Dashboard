@@ -1,0 +1,7 @@
+[
+    { "id": 1, "course": "Full Stack Web Dev", "date": "2024-03-01", "student": "John Doe", "payment": 5000 },
+    { "id": 2, "course": "React Native Master", "date": "2024-03-05", "student": "Alice Smith", "payment": 6500 },
+    { "id": 3, "course": "UI/UX Design", "date": "2024-03-10", "student": "Rahul Kumar", "payment": 4000 },
+    { "id": 4, "course": "Python for Beginners", "date": "2024-03-15", "student": "Sneha Patil", "payment": 3500 },
+    { "id": 5, "course": "MERN Stack Pro", "date": "2024-03-20", "student": "Arjun Mehta", "payment": 7000 }
+]
